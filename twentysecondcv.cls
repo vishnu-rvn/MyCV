@@ -7,7 +7,10 @@
 %-----------------------------------------------------------------------	-----------------
 
 \RequirePackage[quiet]{fontspec}
-\RequirePackage[sfdefault]{ClearSans}
+\usepackage{fontspec}
+\setmainfont{IBM Plex Sans}
+\usepackage[document]{ragged2e}
+%\RequirePackage[sfdefault]{ClearSans}
 
 \def\arrow#1{\pspicture[shift=2pt](#1,0)\psline{->}(#1,0)\endpspicture}
 
@@ -25,6 +28,7 @@
 \RequirePackage{marvosym}
 \RequirePackage{parskip}
 
+\usepackage{setspace}
 \usepackage{enumitem}
 \setlist[itemize]{leftmargin=*}
 
@@ -61,7 +65,7 @@
 
 \definecolor{white}{RGB}{255,255,255}
 \definecolor{gray}{HTML}{4D4D4D}
-\definecolor{sidecolor}{HTML}{E7E7E7}
+\definecolor{sidecolor}{HTML}{F4F7Fb}
 \definecolor{mainblue}{HTML}{0E5484}
 \definecolor{maingray}{HTML}{B9B9B9}
 
@@ -90,6 +94,7 @@
 \definecolor{linkedin}{HTML}{0085AE}
 \definecolor{test}{HTML}{0077be}
 \definecolor{yt}{HTML}{c71610}
+\definecolor{profilecolor}{HTML}{494C4F}
 
 \ifdefined\@cv@print
   \colorlet{green}{gray}
@@ -119,8 +124,7 @@
 % --------------------------------------------------------------------------------------
 % 	FONTS
 %-------------------------------------------------------------------------------------
-\newfontfamily\headingfont[Path = fonts/]{segoeuib.ttf}
-
+\newfontfamily\headingfont[Path = fonts/]{Plexregular.ttf}
 %----------------------------------------------------------------------------------------
 %	 SIDEBAR DEFINITIONS
 %----------------------------------------------------------------------------------------
@@ -133,7 +137,7 @@
 \pgfmathsetlength{\imagewidth}{5cm}
 \pgfmathsetlength{\imagescale}{\imagewidth/600}
 
-\newcommand{\profilesection}[2]{\vspace{8pt}{\color{black!80} \huge #1 \rule[0.15\baselineskip]{#2}{1pt}}}
+\newcommand{\profilesection}[2]{\vspace{2pt}{\color{black!80} \huge #1 \rule[0.15\baselineskip]{#2}{1pt}}}
 
 % Define custom commands for CV info
 \newcommand{\cvpic}[1]{\renewcommand{\cvpic}{#1}}
@@ -147,11 +151,9 @@
 \newcommand{\aboutme}[1]{\renewcommand{\aboutme}{#1}}
 \newcommand{\profilepic}[1]{\renewcommand{\profilepic}{#1}}
 \newcommand{\cvname}[1]{\renewcommand{\cvname}{#1}}
-\newcommand{\cvsecondname}[1]{\renewcommand{\cvsecondname}{#1}}
 \newcommand{\cvjobtitle}[1]{\renewcommand{\cvjobtitle}{#1}}
 
 % Command for printing the contact information icons
-\newcommand*\icon[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt, fill=mainblue,mainblue,text=white] (char) {#1};}}
 
 % Command for printing skill progress bars
 \newcommand\programming[1]{ 
@@ -163,8 +165,26 @@
 		\end{tikzpicture}
 	}
 }
+\newcommand\interests[1]{ 
+	\renewcommand{\programming}{
+		\begin{tikzpicture}
+			\foreach [count=\i] \x/\y in {#1}{
+				\node [above right] at (0,\i/2) {\x};
+			}
+		\end{tikzpicture}
+	}
+}
 \newcommand\technologies[1]{ 
 	\renewcommand{\technologies}{
+		\begin{tikzpicture}
+			\foreach [count=\i] \x/\y in {#1}{
+				\node [above right] at (0,\i/2) {\x};
+			}
+		\end{tikzpicture}
+	}
+}
+\newcommand\designskills[1]{ 
+	\renewcommand{\designskills}{
 		\begin{tikzpicture}
 			\foreach [count=\i] \x/\y in {#1}{
 				\node [above right] at (0,\i/2) {\x};
@@ -184,41 +204,31 @@
 
 \newcommand{\makeprofile}{
     \begin{tikzpicture}[remember picture,overlay]
-      \node [rectangle, fill=sidecolor, anchor=north, minimum width=9cm, minimum height=\paperheight+1cm] (box) at (-5cm,0.5cm){};
+      \node [rectangle, fill=sidecolor, anchor=north, minimum width=8cm, minimum height=\paperheight+1cm] (box) at (-5cm,0.5cm){};
   \end{tikzpicture}
 
   %------------------------------------------------
 
-  \begin{textblock}{6}(0.5, 0.2)
+  \begin{textblock}{6}(0.5, 0.1)
 
     %------------------------------------------------
     
         \vspace{4mm}
     \cvpic
-    
-    {\Huge\color{pblue}\cvname}
-    
-    {\Huge\color{pblue}\cvsecondname}
-    
-    \vspace{2mm}
-
-    %------------------------------------------------
-    
-    {\Large\color{black!80}\cvjobtitle}
-
-    %------------------------------------------------
-    
     \vspace{4mm}
-    \renewcommand{\arraystretch}{2}
-    \begin{tabular}{p{1cm} @{\hskip 0.3cm}p{5cm}}
+    
+    {\LARGE\color{black}\cvname}
+    
+    %------------------------------------------------
+    
+    {\large\color{black!80}\cvjobtitle}
+
+    %------------------------------------------------
+
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{p{0cm} @{\hskip 0.1cm}p{6cm}}
       \ifthenelse{\equal{\cvnumberphone}{}}{}{
-      		{$
-              \begin{array}{l}
-              \hspace{4mm} \Huge \textnormal{\faMobile} 
-              \end{array}
-              $} 
-            & \cvnumberphone\\}
-            
+            & \cvnumberphone} \\
     %   \ifthenelse{\equal{\href{\cvsite}{\cvsite}}{}}{}{
     %         {$
     %           \begin{array}{l}
@@ -227,33 +237,20 @@
     %           $} 
     %         & \href{http://\cvsite}{\cvsite} \\}
       \ifthenelse{\equal{\cvmail}{}}{}{
-            {$
-              \begin{array}{l}
-              \hspace{2.5mm} \huge \textnormal{\textcolor{yt}{\faEnvelopeO}}
-              \end{array}
-              $} 
+         
             & \href{mailto:\cvmail}{\cvmail} \\}
       
        \ifthenelse{\equal{\cvlinkedin}{}}{}{
-            {$
-              \begin{array}{l}
-              \hspace{3mm} \huge \textnormal{\textcolor{linkedin}{\faLinkedin}}
-              \end{array}
-              $} & \href{https://www.linkedin.com\cvlinkedin}{\cvlinkedin} \\
+             & \href{https://www.linkedin.com\cvlinkedin}{\cvlinkedin} \\
             }  
         \ifthenelse{\equal{\cvgithub}{}}{}{
-            {$
-              \begin{array}{l}
-              \hspace{3mm} \huge \textnormal{\faGithub}
-              \end{array}
-              $} & \href{https://www.github.com/\cvgithub}{\cvgithub} \\
+             & \href{https://www.github.com/\cvgithub}{\cvgithub} \\
             }
             
     \end{tabular}
 
     %------------------------------------------------
     \vspace{4mm}
-    \profilesection{Skills}{4cm}
     
     {\large \textbf{Overview}}
 
@@ -261,23 +258,30 @@
         
         %------------------------------------------------
         
-        \vspace{3mm}
+        \vspace{2mm}
 	    
 	    
-	{\large \textbf{Programming}} 
+	{\large \textbf{Programming Languages}} 
 
 		\programming
 
-	{\large \textbf{Technologies}}
+	{\large \textbf{Frameworks}}
     
 	    \technologies
-      
+	    
+	{\large \textbf{Design Skills}}
+    
+	    \designskills
   \end{textblock}
 }
 
-
+\newcommand{\makeprofiletwo}{
+    \begin{tikzpicture}[remember picture,overlay]
+      \node [rectangle, fill=sidecolor, anchor=north, minimum width=8cm, minimum height=		\paperheight+1cm] (box) at (-5cm,0.5cm){};
+  \end{tikzpicture}
+}
 %----------------------------------------------------------------------------------------
-%	 COLOURED SECTION TITLE BOX
+%	 COLOURED TITLE BOX
 %----------------------------------------------------------------------------------------
 
 % Command to create the rounded boxes around the first three letters of section titles
@@ -287,15 +291,17 @@
 
 \def\@sectioncolor#1#2#3{%
 	{%
-		\color{black} #1#2#3%
+		\textbf{\color{black} #1#2#3}%
 	}%
 }
 
 
 \renewcommand{\section}[1]{
+	\color{profilecolor}
   \par\vspace{\parskip}
-	{%
-		\LARGE\headingfont\color{black}%
+	{%	
+		\LARGE\headingfont
+		\color{black}%
 		\@sectioncolor #1%
 	}
   \par\vspace{\parskip}
@@ -318,6 +324,7 @@
 
 % New environment for the long list
 \newenvironment{twenty}{%
+	\color{profilecolor}\large
 	\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll}
 }{%
 	\end{tabular*}
@@ -334,12 +341,16 @@
 % }
 
 \newcommand{\twentyitem}[6]{%
-	#1&\parbox[t]{0.83\textwidth}{%
-		\textbf{#3}% 
+	{\Large#1}\\
+	\parbox[t]{0.9\textwidth}{%
+		\vspace{2pt}
+		\textbf{\large#3}% 
 		\hfill%
+		\vspace{1mm}
 		{\footnotesize#4}%
         }\\%
-    #2&\parbox[t]{0.83\textwidth}{%
+    {\normalsize#2}\\
+    \parbox[t]{1.0\textwidth}{%
 		\ifblank{#5}{}{#5 \\}
 		#6%
 	}\\
@@ -355,14 +366,17 @@
 
 % New environment for the small list
 \newenvironment{twentyshort}{%
+	\color{profilecolor}
 	\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll}
 }{%
 	\end{tabular*}
 }
 
-\newcommand{\twentyitemshort}[2]{%
-	#1&\parbox[t]{0.83\textwidth}{%
+\newcommand{\twentyitemshort}[3]{%
+	#1&\parbox[t]{1.0\textwidth}{%
 		#2%
+		\hfill
+		{\footnotesize#3}
 	}\\
 }
 
@@ -370,7 +384,7 @@
 %	 MARGINS AND LINKS
 %----------------------------------------------------------------------------------------
 
-\RequirePackage[left=7.6cm,top=0.1cm,right=1cm,bottom=0.1cm,nohead,nofoot]{geometry}
+\RequirePackage[left=8cm,top=0.1cm,right=1cm,bottom=0.1cm,nohead,nofoot]{geometry}
 
 
 \usepackage{smartdiagram}
@@ -382,15 +396,15 @@
     %  specifies the minimum size of the bubbles
     bubble node size = 0.5cm,
     % specifies which is the distance among the bubble center node and the other bubbles
-    distance center/other bubbles = 0.3cm,
+    distance center/other bubbles = 0.4cm,
     % sets the distance from the text to the border of the bubble center node
     distance text center bubble = 0.5cm,
     % set center bubble color
     bubble center node color = pblue,
     % define the list of colors usable in the diagram
-    set color list = {lightgray, materialcyan, orange, green, materialorange, materialteal, materialamber, materialindigo, materialgreen, materiallime},
+    set color list = {},
     % sets the opacity at which the bubbles are shown
-    bubble fill opacity = 0.6,
+    bubble fill opacity = 1,
     % sets the opacity at which the bubble text is shown
     bubble text opacity = 1,
 }

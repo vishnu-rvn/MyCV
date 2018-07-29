@@ -16,13 +16,13 @@
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
-\documentclass[letterpaper]{twentysecondcv} % a4paper for A4
+\documentclass[a4paper,14pt]{twentysecondcv} % a4paper for A4
 
 % Command for printing skill overview bubbles
 \newcommand\skills{ 
 ~
 	\smartdiagram[bubble diagram]{
-        \textbf{~~~Full Stack~~~}\\\textbf{Web Dev},
+        \textbf{~~~~Full Stack~~~~}\\\textbf{Web Dev},
         \textbf{~~~~~OOP~~~~~~},
         \textbf{Interpersonal}\\\textbf{Skills},
         \textbf{Design},
@@ -32,11 +32,11 @@
 }
 
 % Programming skill bars
-\programming{{Java $\textbullet$ Octave $\textbullet$ C $\textbullet$ C++ $\textbullet$ \large \LaTeX /},{SQL(MySQL) $\textbullet$ NoSQL(MongoDB)},{Python $\textbullet$ JS $\textbullet$ HTML5 $\textbullet$ CSS}}
+\programming{{Java $\textbullet$ Octave $\textbullet$ C $\textbullet$ C++ $\textbullet$ \large \LaTeX /},{SQL(MySQL) $\textbullet$ NoSQL(MongoDB)},{Python $\textbullet$ JavaScript $\textbullet$ HTML5 $\textbullet$ CSS3}}
 
 \technologies{{Flask $\textbullet$ Django $\textbullet$ Selenium}}
 
-
+\designskills{{Phototshop $\textbullet$ AutoCAD $\textbullet$ SolidWorks}}
 
 % Projects text
 
@@ -44,17 +44,21 @@
 %	 PERSONAL INFORMATION
 %----------------------------------------------------------------------------------------
 % If you don't need one or more of the below, just remove the content leaving the command, e.g. \cvnumberphone{}
-\cvpic{\includegraphics[scale=0.5]{img/anonym.jpg}}
-\cvname{Vishnu}% Your name
-\cvsecondname{Raveendran}
+\cvpic{
+	\begin{tikzpicture}
+		\begin{scope}
+			\clip [rounded corners=1.65cm] (0,0) rectangle coordinate (centerpoint) (3.3,3.3cm);
+        	\node [inner sep=10pt] at (centerpoint) {\includegraphics[width=3.3cm, height=3.3cm]{img/profile_2.JPG}};
+		\end{scope}
+	\end{tikzpicture}
+}
+\cvname{Vishnu Raveendran}% Your name
 \cvjobtitle{ Software Engineer } % Job
-% title/career
-
-\cvlinkedin{/in/vishnu-rvn}
-\cvgithub{vishnu-rvn}
-\cvnumberphone{9037 435 628} % Phone number
+\cvlinkedin{linkedin.com/in/vishnu-rvn}
+\cvgithub{github.com/vishnu-rvn}
+\cvnumberphone{Mobile: 9037 435 628} % Phone number
 % \cvsite{hgadgil.com} % Personal website
-\cvmail{vishnunilambur@gmail.com} % Email address
+\cvmail{Email: vishnunilambur@gmail.com} % Email address
 
 %----------------------------------------------------------------------------------------
 
@@ -63,27 +67,34 @@
 \makeprofile % Print the sidebar
 
 \section{Summary}
-Enthusiastic learner seeking a position in web development and looking forward to work in a well paced environment where I can learn a lot.
-
+\vspace{4px}
+\large
+\begin{spacing}{1.2}
+A hobbyist coder, designer, tester and an enthusiastic and quick learner looking to delve deep into the world of development as a full-stack developer specialized in python, equipped with good communication, logical and analytical skills. I am good at Python, getting better at HTML, CSS, Javascript, Java, web-development using Flask, and a beginner in Database technologies and Machine learning. I am looking forward to take on challenges in a quick-paced environment and effectively contribute to the growth of an organization.
+\end{spacing}
 %----------------------------------------------------------------------------------------
 %	 EXPERIENCE
 %----------------------------------------------------------------------------------------
 \section{Experience}
+\vspace{4px}
 
 \begin{twenty} % Environment for a list with descriptions
 \twentyitem
-    	{Sept 2017 -}
-		{Present}
+    	{\href{https://www.accenture.com/in-en}{Accenture}}
+		{Sept 2017-Present}
         {Application Development Associate}
-        {\href{https://www.accenture.com/in-en}{Accenture}}
         {}
-        {\begin{itemize}
-        \item Currently working in life sciences industry. Involved in building an application which processes data from pharmaceutical companies to accelerate their R\&D services by following good document
-        \item Maintain UI automation frameworks built in Python and Java using selenium package
-        \item Author, maintain and execute manual and automation scripts.
-        \item Analyze and document defects in the defect management tool.
-        \item \textbf{Tools Used}: \{Rational Quality Manager, Rational Team Concert, Selenium, Python, Java\}
-33        \end{itemize}}
+        {}
+        {
+        \begin{spacing}{1.2}                
+        \begin{itemize}
+        \item Currently working in life sciences industry. Involved in building interdependent modular applications, integration and customization of the same to suit the requirements of different pharmaceutical companies. Which are in turn used by them to accelerate their Research and Development processes. To reduce the cost and time involved in development of a drug.
+        \item Maintain, refactor \& update automation frameworks built in Python and Java using selenium webdriver.
+        \item Author, maintain \& execute automation and manual test scripts.
+        \item Analyze and document defects in the defect documentation tool encountered during test executions.
+        \item \textbf{Tools Used}: Rational Quality Manager, Rational Team Concert, Selenium, Python, Java
+        \end{itemize}
+        \end{spacing}}
         \\
         
 	%\twentyitem{<dates>}{<title>}{<location>}{<description>}
@@ -91,25 +102,67 @@ Enthusiastic learner seeking a position in web development and looking forward t
 
 
 \section{Personal Projects}
+\vspace{4px}
+
+\begin{spacing}{1.2}
+\large
 \textbf{Analytica} - Analytics application being built for data processing and visualization. Being built to focus on improving the understanding of AJAX using Javascript. Tools used: Flask, Python, Javascript, HTML, CSS, MongoDB\\
-
 \textbf{Medium} - A mini blog website. Built primarily to focus on enhancing back-end and front-end programming. Tools used: Flask, Python, Javascript, HTML, CSS, MySQL\\
-
 \textbf{Ecommerce} - An e-commerce website. Built primarily to focus on enhancing programming skills and to familiarize the concept of pagination(limit-offset method). Tools used: Flask, Python, Javascript, HTML, SCSS, MongoDB\\
+\end{spacing}
+
 %----------------------------------------------------------------------------------------
 %	 EDUCATION
 %----------------------------------------------------------------------------------------
+
+\pagebreak
+\makeprofiletwo
+
+\vspace*{5mm}
 \section{Education}
 
 \begin{twenty} % Environment for a list with descriptions
 	\twentyitem
-    	{August 2013 -}
-        {May 2017}
+		{{Government Engineering College, Thrissur}}
+    	{August 2013 - May 2017}
         {B.Tech, Mechanical Engineering\textnormal{(GPA: 7.27/10.0)}}
-        {\href{http://www.uoguelph.ca/}{GEC, Thrissur}}
+        {}
         {}
         {}
 	%\twentyitem{<dates>}{<title>}{<organization>}{<location>}{<description>}
+\end{twenty}
+
+\large{\textcolor{black}{Certifications}}
+\vspace{4px}
+
+\begin{twentyshort}
+	\twentyitemshort
+		{}
+		{Intro to Python for Data Science}
+		{\textbf{DataCamp}}
+	\twentyitemshort
+		{}
+		{Intro to SQL for Data Science}
+		{\textbf{DataCamp}}
+	\twentyitemshort
+		{}
+		{Introduction to Python for Data Science (edX)}
+		{\textbf{edX}}
+	\twentyitemshort
+		{}
+		{Regex Academy: An Introduction To Text Parsing Sorcery}
+		{\textbf{Udemy}}
+	\twentyitemshort
+		{}
+		{Python for Data Science and Machine Learning Bootcamp}
+		{\textbf{Udemy}}
+\end{twentyshort}
+
+\section{Other Interests}
+\vspace{4px}
+
+\begin{twenty}
+Coding, Mountaineering \& hiking, gaming, books
 \end{twenty}
 
 \end{document} 
